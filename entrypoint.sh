@@ -7,7 +7,7 @@ echo "Neovim"
 if ! [[ "$(ls -A -I 'workspace' -I 'tmp' -I '.zcompdump*' /root)" ]] ;
 then
   echo "Initialize new configuration."
-  cd /init_home && mv $(ls -A -I workspace -I tmp -I ".zcompdump*" /init_home) /root/
+  cd /init_home && mv $(ls -A -I "workspace" -I "tmp" -I ".zcompdump*" /init_home) /root/
 else
     echo "Use current configuration."
 fi
@@ -22,9 +22,5 @@ then
     -G root "$ENV_USER_NAME"
 fi
 
-
-su "$ENV_USER_NAME" \
-  -c "source /root/.zshrc
-  cd /root/workspace/
-  nvim $ENV_FILE_PATH"
+su -l "$ENV_USER_NAME" --session-command "zsh -uelic \"cd /root/workspace/ && nvim $1\""
 echo Goodbye!

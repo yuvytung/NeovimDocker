@@ -1,4 +1,6 @@
-docker build . -t yuvytung/neovim:latest
+#/bin/sh
+sudo docker build . -t yuvytung/neovim:latest
+mkdir -p ~/config_local/docker_neovim
 neovim='function neovim() {
   docker run -it --rm \
     -v "$(pwd)/:/root/workspace/" \

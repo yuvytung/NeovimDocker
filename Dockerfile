@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:jammy-20230605
 # env
 ENV NODE_VERSION=16.20.1
 ENV JAVA_VERSION=17
@@ -52,5 +52,5 @@ WORKDIR $WORK_DIR
 COPY ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/bin/zsh", "-uelic", "/entrypoint.sh"]
 
